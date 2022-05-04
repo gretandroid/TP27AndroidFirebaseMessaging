@@ -11,20 +11,11 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.firebase.messaging", appContext.packageName)
-
-
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -35,6 +26,7 @@ class ExampleInstrumentedTest {
                 val token = task.result
                 // On recupére et on affiche le token
                 Log.d("TOKEN", token)
+                assert(token.isNotBlank())
             })
     }
 }
