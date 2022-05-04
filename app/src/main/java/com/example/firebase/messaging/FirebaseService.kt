@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class FirebaseService : FirebaseMessagingService()  {
+class FirebaseService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // ...
@@ -24,13 +24,13 @@ class FirebaseService : FirebaseMessagingService()  {
             val nom = data["nom"]
             val prenom = data["prenom"]
             val age = data["age"]
+
             Log.d("resultat", "$nom $prenom $age")
             Log.d("RESULTAT", "Message received from: " + remoteMessage.data.size)
             for (key in remoteMessage.data.keys) {
                 Log.d("resultat", """$key data: ${remoteMessage.data[key]}""")
             }
         }
-
 
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
